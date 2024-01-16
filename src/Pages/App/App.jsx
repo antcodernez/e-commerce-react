@@ -6,6 +6,7 @@ import {MyAccount} from "../MyAccount";
 import {MyOrder} from "../MyOrder";
 import {MyOrders} from "../MyOrders";
 import {NotFound} from "../NotFound";
+import {Navbar} from "../../Components/Navbar";
 
 import './App.css';
 
@@ -29,8 +30,9 @@ const App = () => {
     // el componente BrowserRouter para envolver las rutas de la aplicación. Esto proporciona la funcionalidad de enrutamiento para la aplicación.
     <BrowserRouter>
       <AppRoutes />
+      <Navbar />
     </BrowserRouter>
-
+     
     //Se incluye el componente AppRoutes dentro de BrowserRouter, indicando que las rutas definidas en AppRoutes se utilizarán para gestionar la navegación de la aplicación.
   )
 }
