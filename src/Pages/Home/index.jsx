@@ -1,8 +1,11 @@
 import React from 'react'
+import { Layout } from '../../Components/Layout'
 
 function Home() {
   return (
-    <div className='bg-blue-400'>Home michicats :D</div>
+    <Layout>
+        hola michi
+    </Layout>
   )
 }
 

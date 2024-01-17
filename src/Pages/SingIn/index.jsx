@@ -1,10 +1,11 @@
 import React from 'react'
+import { Layout } from '../../Components/Layout'
 
 function SingIn() {
   return (
-    <div>
+    <Layout>
       Sing in :D
-    </div>
+    </Layout>
   )
 }
 
