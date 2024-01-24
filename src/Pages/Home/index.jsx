@@ -6,9 +6,14 @@ import { Card } from '../../Components/Card'
 function Home() {
   const [products, setProducts] = useState(null); //useState es un hook que se utiliza para agregar el estado a los componentes de función en React. Permite que un componente de función tenga un estado local, lo que significa que puede almacenar y modificar datos a lo largo del ciclo de vida del componente.
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
+    try {
+      fetch("https://api.escuelajs.co/api/v1/products")
       .then(res => res.json())
-      .then(data => setProducts(data))
+      .then(data => setProducts(data.slice(0, 32)))
+    } catch (error) {
+      console.error(error);
+    }
+    
   }, []); //se utiliza para realizar efectos secundarios en componentes de función. Estos efectos secundarios pueden incluir cosas como la manipulación del DOM, solicitudes de red, suscripciones a eventos y más. useEffect se ejecuta después de cada renderizado del componente y se utiliza para manejar lógica que no debería estar directamente en el flujo de renderizado principal del componente.
 
   return (
