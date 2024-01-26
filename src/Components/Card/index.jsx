@@ -1,4 +1,3 @@
-import React from 'react'
 
 // eslint-disable-next-line react/prop-types
 function Card({category: {name}, images, price, title}) {
