@@ -3,4 +3,5 @@
         top: 68px;
         width: 360px;
         height: calc(100vh - 68px);
+        overflow-y: hidden;
     }

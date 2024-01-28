@@ -3,18 +3,18 @@ import { ShoppingCartContext } from "../../Context";
 import "boxicons";
 
 // eslint-disable-next-line react/prop-types
-function Card({category: {name}, images, price, title}) {
-  
+function Card(data) {
+  const {category: {name}, images, price, title} = data;
   const context = useContext(ShoppingCartContext); //Me va a leer mi estado global
 
-  
+  const showProduct = (productDetail) => { 
+    context.openProductDetail();
+    context.setProductToShow(productDetail);
+  }
 
   return (
     <div className='bg-white cursor-pointer w-60 h-70 rounded-lg'
-    onClick={() => {
-      context.openProductDetail();
-      
-    }}
+    onClick={() => showProduct(data)}
     >
       <figure className='relative mb-2 w-full h-3/5'>
         <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5'>{name}</span>

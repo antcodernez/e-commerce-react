@@ -6,13 +6,18 @@ const ShoppingCartContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const ShoppingCartProvider = ({children}) => {
+    //Quantity products  on shopingcart
     const [count, setCount] = useState(0);
-    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
 
+    // productDetail * open/close
+    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
     const openProductDetail = () => setIsProductDetailOpen(true);
     const closeProductDetail = () => setIsProductDetailOpen(false);
 
+    //Product detail show product
+    const [productToShow, setProductToShow] = useState({
 
+    });
     
     return (    
     //Creamos un provedor que va a encapsular todos mis componentes en APP para darles informacion
@@ -21,7 +26,9 @@ const ShoppingCartProvider = ({children}) => {
         setCount,
         openProductDetail,
         closeProductDetail,
-        isProductDetailOpen
+        isProductDetailOpen,
+        productToShow,
+        setProductToShow
     }}>
         {children}
     </ShoppingCartContext.Provider>
