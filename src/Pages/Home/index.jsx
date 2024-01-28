@@ -2,8 +2,8 @@ import { useEffect, useState, Suspense } from 'react'
 
 import { Layout } from '../../Components/Layout'
 import { Card } from '../../Components/Card'
-import { Loader } from '../../Components/Loader';
-
+// import { Loader } from '../../Components/Loader';
+import { ProductDetail } from '../../Components/ProductDetail';
 
 function Home() {
   const [products, setProducts] = useState(null); //useState es un hook que se utiliza para agregar el estado a los componentes de función en React. Permite que un componente de función tenga un estado local, lo que significa que puede almacenar y modificar datos a lo largo del ciclo de vida del componente.
@@ -20,18 +20,17 @@ function Home() {
 
   return (
     <Layout >
-        <Suspense fallback={<Loader/>}>
-          <div className="grid place-items-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full max-w-screen-xl">
-            {
-              products?.map((product) => (
-                <Card 
-                  key={product.id}
+      <div className="grid place-items-center gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full max-w-screen-xl">
+        {
+          products?.map((product) => (
+            <Card 
+              key={product.id}
                   {...product}
-                />
-              ))
-            }
-          </div>
-        </Suspense>
+            />
+          ))
+        }
+      </div>
+      <ProductDetail />
     </Layout>
   )
 }
