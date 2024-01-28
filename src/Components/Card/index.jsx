@@ -20,7 +20,7 @@ function Card({category: {name}, images, price, title}) {
             context.setCount(context.count + 1);
           }}
         >
-          <box-icon type="solid" name="cart-add"></box-icon>
+          <box-icon type="solid" name="cart-add" color="#7e22ce"></box-icon>
         </div>
       </figure>
       <p className='flex justify-between'>

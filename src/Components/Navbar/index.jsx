@@ -11,8 +11,9 @@ const Navbar = () => {
         <li className="font-semibold text-lg">
             <NavLink 
                 to="/"
+                className="text-purple-700"
             >
-                Shopi
+                Shopi🐔
             </NavLink>
         </li>
         <li>
@@ -77,7 +78,7 @@ const Navbar = () => {
         </li>
       </ul>
       <ul className="flex items-center gap-3">
-        <li className="text-purple-900/60">
+        <li className="text-purple-900">
             yisus@correo.com
         </li>
         <li>
@@ -111,8 +112,11 @@ const Navbar = () => {
             </NavLink>
         </li>
         
-        <li>
-            🐔{context.count}
+        <li className="flex items-center">
+            <box-icon name='shopping-bag' color="#7e22ce"></box-icon>
+            <p className="font-semibold">
+                {context.count}
+            </p>
         </li>
       </ul>
     </nav>
