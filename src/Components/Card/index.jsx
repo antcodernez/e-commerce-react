@@ -12,6 +12,13 @@ function Card(data) {
     context.setProductToShow(productDetail);
   }
 
+  const addProductsToCart = (productData) => {
+    context.setCount(context.count + 1);
+    context.setCartProducts([...context.cartProducts, productData]);
+
+    console.log(context.cartProducts);
+  }
+
   return (
     <div className='bg-white cursor-pointer w-60 h-70 rounded-lg'
     onClick={() => showProduct(data)}
@@ -23,10 +30,10 @@ function Card(data) {
           className='absolute top-0 right-0 flex justify-center items-center bg-white w-10g h-10 rounded-full m-2 p-2'
           onClick={(e) => {
             e.stopPropagation(); //Evita que el evento se propague hacia el div principal
-            context.setCount(context.count + 1);
+            addProductsToCart(data);
           }}
         >
-          <box-icon type="solid" name="cart-add" color="#7e22ce"></box-icon>
+          <box-icon type="solid" name="cart-add" color="#7e22ce" ></box-icon>
         </div>
       </figure>
       <p className='flex justify-between'>

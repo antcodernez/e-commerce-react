@@ -14,10 +14,16 @@ const ShoppingCartProvider = ({children}) => {
     const openProductDetail = () => setIsProductDetailOpen(true);
     const closeProductDetail = () => setIsProductDetailOpen(false);
 
-    //Product detail show product
+    //takes a product and render it on the component Product detail 
     const [productToShow, setProductToShow] = useState({
+        title: "",
+        price: "",
+        description: "",
+        images: [],
+      });
+    // Shopping cart * add products to card
+    const [cartProducts, setCartProducts] = useState([]);
 
-    });
     
     return (    
     //Creamos un provedor que va a encapsular todos mis componentes en APP para darles informacion
@@ -28,7 +34,9 @@ const ShoppingCartProvider = ({children}) => {
         closeProductDetail,
         isProductDetailOpen,
         productToShow,
-        setProductToShow
+        setProductToShow,
+        cartProducts,
+        setCartProducts
     }}>
         {children}
     </ShoppingCartContext.Provider>
