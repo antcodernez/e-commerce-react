@@ -13,6 +13,11 @@ const ShoppingCartProvider = ({children}) => {
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
     const openProductDetail = () => setIsProductDetailOpen(true);
     const closeProductDetail = () => setIsProductDetailOpen(false);
+    
+    // checkout Side Menu * open/close
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
     //takes a product and render it on the component Product detail 
     const [productToShow, setProductToShow] = useState({
@@ -36,7 +41,10 @@ const ShoppingCartProvider = ({children}) => {
         productToShow,
         setProductToShow,
         cartProducts,
-        setCartProducts
+        setCartProducts,
+        isCheckoutSideMenuOpen,
+        openCheckoutSideMenu,
+        closeCheckoutSideMenu
     }}>
         {children}
     </ShoppingCartContext.Provider>

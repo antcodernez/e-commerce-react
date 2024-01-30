@@ -8,6 +8,7 @@ function Card(data) {
   const context = useContext(ShoppingCartContext); //Me va a leer mi estado global
 
   const showProduct = (productDetail) => { 
+    context.closeCheckoutSideMenu();
     context.openProductDetail();
     context.setProductToShow(productDetail);
   }
@@ -15,7 +16,8 @@ function Card(data) {
   const addProductsToCart = (productData) => {
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
-
+    context.closeProductDetail();
+    context.openCheckoutSideMenu();
     console.log(context.cartProducts);
   }
 

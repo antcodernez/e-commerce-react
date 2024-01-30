@@ -9,6 +9,7 @@ import {NotFound} from "../NotFound";
 import {Navbar} from "../../Components/Navbar";
 import {ShoppingCartProvider} from "../../Context/index";
 import './App.css';
+import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu';
 
 const AppRoutes = () => {
   // se utiliza el hook useRoutes para definir las rutas de la aplicación.
@@ -30,6 +31,7 @@ const App = () => {
     // el componente BrowserRouter para envolver las rutas de la aplicación. Esto proporciona la funcionalidad de enrutamiento para la aplicación.
     <ShoppingCartProvider>
       <BrowserRouter>
+        <CheckoutSideMenu/>
         <AppRoutes />
         <Navbar />
       </BrowserRouter>
