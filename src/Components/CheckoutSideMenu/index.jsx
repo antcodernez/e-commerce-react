@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
+import { OrderCard } from "../OrderCard";
 import "boxicons";
 import "./styles.css";
 
@@ -7,7 +8,7 @@ import "./styles.css";
 const CheckoutSideMenu = () => {
   const [animation, setAnimation] = useState(null);
 
-  const {isCheckoutSideMenuOpen, closeCheckoutSideMenu} = useContext(ShoppingCartContext);
+  const {isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts} = useContext(ShoppingCartContext);
 
 
   const handleIconClick = () => {
@@ -21,7 +22,7 @@ const CheckoutSideMenu = () => {
       }, 750);
     }
   }
-
+  console.log(cartProducts);
   // let randomNumber =  Math.floor(Math.random() * 4)
 
   return (
@@ -37,6 +38,19 @@ const CheckoutSideMenu = () => {
               onClick={handleIconClick}
             />
           </div>      
+        </div>
+
+        <div className="px-6">
+          {
+            cartProducts.map((product) => (
+              <OrderCard
+                key={product.id}
+                title={product.title}
+                price={product.price}
+                imageUrl={product.images}     
+              />
+            ))
+          }
         </div>
     </aside>
   )
