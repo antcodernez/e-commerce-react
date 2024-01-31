@@ -8,7 +8,7 @@ import "./styles.css";
 const CheckoutSideMenu = () => {
   const [animation, setAnimation] = useState(null);
 
-  const {isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts} = useContext(ShoppingCartContext);
+  const {isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, count,setCount} = useContext(ShoppingCartContext);
 
 
   const handleIconClick = () => {
@@ -22,7 +22,12 @@ const CheckoutSideMenu = () => {
       }, 750);
     }
   }
-  console.log(cartProducts);
+  const handleDelete = (id) => {
+    const filteredProducts = cartProducts.filter(product => product.id != id);
+    setCartProducts(filteredProducts);
+    setCount(count - 1);
+  }
+
   // let randomNumber =  Math.floor(Math.random() * 4)
 
   return (
@@ -45,9 +50,11 @@ const CheckoutSideMenu = () => {
             cartProducts.map((product) => (
               <OrderCard
                 key={product.id}
+                id={product.id}
                 title={product.title}
                 price={product.price}
-                imageUrl={product.images}     
+                imageUrl={product.images}
+                handleDelete={handleDelete}     
               />
             ))
           }

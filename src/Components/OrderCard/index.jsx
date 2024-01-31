@@ -2,7 +2,7 @@ import "boxicons";
 
 const OrderCard = props => {
     // eslint-disable-next-line react/prop-types
-    const {title, imageUrl, price} = props;
+    const {title, imageUrl, price, handleDelete, id} = props;
 return (
     <div className="flex justify-between items-center mb-3c">
         <div className="flex items-center gap-2">
@@ -18,9 +18,9 @@ return (
             <box-icon 
               name="x" 
               color="#7e22ce" 
-              size="md" 
-            //   animation={animation} 
-            //   onClick={handleIconClick}
+              size="md"
+              onClick={() => handleDelete(id)}
+              className="cursor-pointer"
             />
         </div>
     </div>
