@@ -26,7 +26,7 @@ const CheckoutSideMenu = () => {
   // let randomNumber =  Math.floor(Math.random() * 4)
 
   return (
-    <aside className={`${isCheckoutSideMenuOpen ? "flex":"hidden" } checkout-side-menu flex-col fixed bg-white right-0 border border-black rounded-lg overflow-y-auto`}>
+    <aside className={`${isCheckoutSideMenuOpen ? "flex":"hidden" } checkout-side-menu flex-col fixed bg-white right-0 border border-black rounded-lg`}>
         <div className="flex justify-between items-center">
           <h2 className="font-medium text-xl p-6">My Orders</h2>
           <div className="cursor-pointer mx-1">
@@ -40,7 +40,7 @@ const CheckoutSideMenu = () => {
           </div>      
         </div>
 
-        <div className="px-6">
+        <div className="px-6  overflow-y-scroll">
           {
             cartProducts.map((product) => (
               <OrderCard
