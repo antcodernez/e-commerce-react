@@ -38,9 +38,7 @@ const CheckoutSideMenu = () => {
       totalProducts: cartProducts.length,
       totalPrice: totalPrice(cartProducts)
     }
-    console.log(order);
     setOrder([...order, orderToAdd]);
-    console.log(order);
     setCartProducts([]);
     setCount(0);
     closeCheckoutSideMenu()

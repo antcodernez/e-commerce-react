@@ -14,6 +14,7 @@ const OrderCard = props => {
               onClick={() => handleDelete(id)}
               className="cursor-pointer"
             />
+            
             </div>;
         }
     return (
