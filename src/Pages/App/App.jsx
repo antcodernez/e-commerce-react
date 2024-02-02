@@ -17,6 +17,7 @@ const AppRoutes = () => {
     { path: "/", element: <Home /> },
     { path: "/my-order", element: <MyOrder /> },
     { path: "/my-orders", element: <MyOrders /> },
+    { path: "/my-orders/last", element: <MyOrders /> },
     { path: "/my-account", element: <MyAccount /> },
     { path: "/sing-in", element: <SingIn /> },
     { path: "/*", element: <NotFound /> }, //Estoy indicando que sea cualquier ruta que no este declarada

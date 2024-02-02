@@ -4,6 +4,7 @@ import { OrderCard } from "../OrderCard";
 import { totalPrice } from "../../utils";
 import "boxicons";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 
 const CheckoutSideMenu = () => {
@@ -42,6 +43,7 @@ const CheckoutSideMenu = () => {
     console.log(order);
     setCartProducts([]);
     setCount(0);
+    closeCheckoutSideMenu()
   }
 
   return (
@@ -73,15 +75,21 @@ const CheckoutSideMenu = () => {
             ))
           }
         </div>
+        
         <div className="px-6 mb-6">
           <p className="flex place-content-between my-5 items-center">
             <span className="font-semibold text-2xl">Total: </span>
             <span className="text-green-700 font-bold text-2xl">{`$${totalPrice(cartProducts)}`}</span>
           </p>
-          <button 
-            onClick={() => handleCheckout()}
-            className="w-full bg-black py-3 text-white rounded-lg cursor-pointer"  
-          >Checkout</button>
+          <Link to="/my-orders/last">
+            <button 
+              onClick={() => handleCheckout()}
+              className="w-full bg-black py-3 text-white rounded-lg cursor-pointer"  
+            >
+              Checkout
+            </button>
+          </Link>
+          
         </div>
     </aside>
   )
