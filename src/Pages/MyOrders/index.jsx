@@ -7,7 +7,9 @@ import "boxicons";
 
 function MyOrders() {
   const {order} = useContext(ShoppingCartContext);
+  
   console.log(order[0]);
+
   return (
     <Layout>
       <div className='flex items-center justify-center w-80 relative'>
@@ -39,5 +41,5 @@ function MyOrders() {
 }
 
 export {
-    MyOrders
+  MyOrders
 }
