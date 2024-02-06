@@ -8,7 +8,7 @@ const totalPrice = (products) => products.reduce((sum, product) => sum + product
 
 
 /**
- * This function calculates 
+ * This function returns a random string
  * @returns {String} random id
  */
 const generateId = () => Date.now().toString(32) + Math.random().toString(32).substring(2);

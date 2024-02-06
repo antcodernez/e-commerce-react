@@ -7,8 +7,6 @@ import "boxicons";
 
 function MyOrders() {
   const {order} = useContext(ShoppingCartContext);
-  
-  console.log(order[0]);
 
   return (
     <Layout>
@@ -26,11 +24,11 @@ function MyOrders() {
       </div>
       {
         order.map((oneOrder, index) => (
-          <Link to={`/my-orders/${oneOrder.id}`} key={index}>
+          <Link to={`/my-orders/${index}`} key={index}>
               <OrdersCard 
                 totalPrice={oneOrder.totalPrice}
                 totalProducts={oneOrder.totalProducts}
-              
+                date = {oneOrder.date}
               />
           </Link>
         ))
