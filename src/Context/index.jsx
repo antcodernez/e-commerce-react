@@ -33,16 +33,18 @@ const ShoppingCartProvider = ({children}) => {
     const [order, setOrder] = useState([]);
     
     // Get products bt title
-    const [searchByTitle, setSearchByTitle] = useState([]);
+    const [searchByTitle, setSearchByTitle] = useState("");
 
-    console.log(searchByTitle);
     // Get products 
     const [products, setProducts] = useState(null); //useState es un hook que se utiliza para agregar el estado a los componentes de función en React. Permite que un componente de función tenga un estado local, lo que significa que puede almacenar y modificar datos a lo largo del ciclo de vida del componente.
+
+    const [filtredProducts, setFiltredProducts] = useState([]);
+
     useEffect(() => {
         try {
           fetch("https://api.escuelajs.co/api/v1/products")
           .then(res => res.json())
-          .then(data => setProducts(data.slice(0, 32)))
+          .then(data => setProducts(data.slice(0, 34)))
         } catch (error) {
           console.error(error);
         }
@@ -50,6 +52,21 @@ const ShoppingCartProvider = ({children}) => {
       }, []); //se utiliza para realizar efectos secundarios en componentes de función. Estos efectos secundarios pueden incluir cosas como la manipulación del DOM, solicitudes de red, suscripciones a eventos y más. useEffect se ejecuta después de cada renderizado del componente y se utiliza para manejar lógica que no debería estar directamente en el flujo de renderizado principal del componente.
     
     
+    const filteredItemsByTitle = (items, searchByTitle) => {
+      return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+
+      
+    }
+
+    useEffect(() => {
+      if(searchByTitle)
+        {
+          setFiltredProducts(filteredItemsByTitle(products, searchByTitle))
+        }
+    }, [products, searchByTitle])
+
+    console.log(filtredProducts);
+
     return (    
     //Creamos un provedor que va a encapsular todos mis componentes en APP para darles informacion
     <ShoppingCartContext.Provider value={{
@@ -70,7 +87,8 @@ const ShoppingCartProvider = ({children}) => {
         products,
         setProducts,
         searchByTitle, 
-        setSearchByTitle
+        setSearchByTitle,
+        filtredProducts
     }}>
         {children}
     </ShoppingCartContext.Provider>
