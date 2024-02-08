@@ -1,5 +1,6 @@
-# e-commerce on react
+<h1 align="center" color="purple"> e-commerce on react</h1>
 
+![Ejemplo de imagen local](./public/homePage.png)
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
