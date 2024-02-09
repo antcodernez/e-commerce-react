@@ -12,6 +12,7 @@ const Navbar = () => {
             <NavLink 
                 to="/"
                 className="text-purple-700"
+                onClick={() => context.setSearchByCategory()}
             >
                 Shopi🐔
             </NavLink>
@@ -22,6 +23,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
+                onClick={() => context.setSearchByCategory()}
             >
                 All
             </NavLink>
@@ -32,6 +34,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
+                onClick={() => context.setSearchByCategory("clothes")}
             >
                 Clothes
             </NavLink>
@@ -42,6 +45,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
+                onClick={() => context.setSearchByCategory("electronics")}
             >
                 Electronics
             </NavLink>
@@ -52,6 +56,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
+                onClick={() => context.setSearchByCategory("furnitures")}
             >
                 Furnitures
             </NavLink>
@@ -62,6 +67,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
+                onClick={() => context.setSearchByCategory("toys")}
             >
                 Toys
             </NavLink>
@@ -72,6 +78,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
+                onClick={() => context.setSearchByCategory("gallos")}
             >
                 Gallos
             </NavLink>

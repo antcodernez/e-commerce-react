@@ -15,6 +15,11 @@ const AppRoutes = () => {
   // se utiliza el hook useRoutes para definir las rutas de la aplicación.
   const routes = useRoutes([
     { path: "/", element: <Home /> },
+    { path: "/clothes", element: <Home /> },
+    { path: "/electronics", element: <Home /> },
+    { path: "/furnitures", element: <Home /> },
+    { path: "/toys", element: <Home /> },
+    { path: "/gallos", element: <Home /> },
     { path: "/my-order", element: <MyOrder /> },
     { path: "/my-orders", element: <MyOrders /> },
     { path: "/my-orders/last", element: <MyOrder /> },

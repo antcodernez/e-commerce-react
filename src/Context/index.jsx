@@ -54,19 +54,66 @@ const ShoppingCartProvider = ({children}) => {
     
     const filteredItemsByTitle = (items, searchByTitle) => {
       return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+    }
 
-      
+   
+    //value of category to search products
+    const [searchByCategory, setSearchByCategory] = useState("");
+
+
+    /**
+     * 
+     * @param {Array} items array with objects
+     * @param {String} searchByCategory category to filter 
+     * @returns {Array} products per category
+     */
+    const filteredProductsByCategory = (items, searchByCategory) => {
+      return items?.filter(item => item?.category.name.toLowerCase().includes(searchByCategory.toLowerCase()));
     }
 
     useEffect(() => {
-      if(searchByTitle)
+      if(searchByTitle && !searchByCategory)
         {
-          setFiltredProducts(filteredItemsByTitle(products, searchByTitle))
+          setFiltredProducts(filterBy("BY_TITLE",products, searchByTitle, searchByCategory))
         }
-    }, [products, searchByTitle])
+      if(!searchByTitle && searchByCategory)
+        {
+          setFiltredProducts(filterBy("BY_CATEGORY", products, searchByTitle, searchByCategory))
+        }
+      else if(!searchByCategory && !searchByCategory)
+        {
+          setFiltredProducts(filterBy(null, products, searchByTitle, searchByCategory))
+        }
+      
+      else if(searchByCategory && searchByCategory)
+        {
+          setFiltredProducts(filterBy("BY_TITLE_AND_CATEGORY", products, searchByTitle, searchByCategory))
+        }
+      
+    }, [products, searchByTitle, searchByCategory])
+
+    const filterBy = (searchType , products, searchByTitle, searchByCategory) => {
+      if(searchType === "BY_TITLE")
+        {
+          return filteredItemsByTitle(products, searchByTitle)
+        }
+      else if(searchType === "BY_CATEGORY")
+        {
+          return filteredProductsByCategory(products, searchByCategory)
+        }
+      else if(searchType === "BY_TITLE_AND_CATEGORY")
+        {
+          return filteredProductsByCategory(products, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+        }
+      else if(!searchType)
+        {
+          return products
+        }
+    }
 
     console.log(filtredProducts);
 
+    
     return (    
     //Creamos un provedor que va a encapsular todos mis componentes en APP para darles informacion
     <ShoppingCartContext.Provider value={{
@@ -88,7 +135,9 @@ const ShoppingCartProvider = ({children}) => {
         setProducts,
         searchByTitle, 
         setSearchByTitle,
-        filtredProducts
+        filtredProducts,
+        setSearchByCategory,
+        searchByCategory
     }}>
         {children}
     </ShoppingCartContext.Provider>

@@ -8,7 +8,7 @@ import { ShoppingCartContext } from '../../Context';
 
 function Home() {
   
-  const { products, searchByTitle, setSearchByTitle, filtredProducts } = useContext(ShoppingCartContext);
+  const { searchByTitle, setSearchByTitle, filtredProducts } = useContext(ShoppingCartContext);
 
    const renderView = () => {
     if(searchByTitle?.length > 0)
@@ -37,7 +37,7 @@ function Home() {
     else
       {
         return(
-          products?.map((product) => (
+          filtredProducts?.map((product) => (
             <Card 
               key={product.id}
                   {...product}
