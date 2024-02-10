@@ -84,6 +84,7 @@ const ShoppingCartProvider = ({children}) => {
       if (searchByTitle && searchByCategory) {
         setFiltredProducts(filterBy("BY_TITLE_AND_CATEGORY", products, searchByTitle, searchByCategory));
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [products, searchByTitle, searchByCategory])
     
 
