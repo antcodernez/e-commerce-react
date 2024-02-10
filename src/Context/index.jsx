@@ -52,9 +52,10 @@ const ShoppingCartProvider = ({children}) => {
       }, []); //se utiliza para realizar efectos secundarios en componentes de función. Estos efectos secundarios pueden incluir cosas como la manipulación del DOM, solicitudes de red, suscripciones a eventos y más. useEffect se ejecuta después de cada renderizado del componente y se utiliza para manejar lógica que no debería estar directamente en el flujo de renderizado principal del componente.
     
     
-    const filteredItemsByTitle = (items, searchByTitle) => {
-      return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
-    }
+      const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+      }
+      
    
     //value of category to search products
     const [searchByCategory, setSearchByCategory] = useState(null);
@@ -71,46 +72,33 @@ const ShoppingCartProvider = ({children}) => {
     }
 
     useEffect(() => {
-      if(searchByTitle && !searchByCategory)
-        {
-          setFiltredProducts(filterBy("BY_TITLE", products , searchByTitle, searchByCategory))
-        }
-      if(!searchByTitle && searchByCategory)
-        {
-          setFiltredProducts(filterBy("BY_CATEGORY", products, searchByTitle, searchByCategory))
-        }
-      if(!searchByCategory && !searchByCategory)
-        {
-          setFiltredProducts(filterBy(null, products, searchByTitle, searchByCategory))
-        }
-      
-      if(searchByCategory && searchByCategory)
-        {
-          setFiltredProducts(filterBy("BY_TITLE_AND_CATEGORY", products, searchByTitle, searchByCategory))
-        }
-      
+      if (searchByTitle && !searchByCategory) {
+        setFiltredProducts(filterBy("BY_TITLE", products, searchByTitle));
+      }
+      if (!searchByTitle && searchByCategory) {
+        setFiltredProducts(filterBy("BY_CATEGORY", products, null, searchByCategory));
+      }
+      if (!searchByCategory && !searchByTitle) {
+        setFiltredProducts(filterBy(null, products, null, null));
+      }
+      if (searchByTitle && searchByCategory) {
+        setFiltredProducts(filterBy("BY_TITLE_AND_CATEGORY", products, searchByTitle, searchByCategory));
+      }
     }, [products, searchByTitle, searchByCategory])
+    
 
-    const filterBy = (searchType , products, searchByTitle, searchByCategory) => {
-      if(searchType === "BY_TITLE")
-        {
-          return filteredItemsByTitle(products, searchByTitle)
-        }
-      if(searchType === "BY_CATEGORY")
-        {
-          return filteredProductsByCategory(products, searchByCategory)
-        }
-      if(searchType === "BY_TITLE_AND_CATEGORY")
-        {
-          return filteredProductsByCategory(products, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
-        }
-      if(!searchType)
-        {
-          return products
-        }
+    const filterBy = (searchType, products, searchByTitle, searchByCategory) => {
+      switch (searchType) {
+        case "BY_TITLE":
+          return filteredItemsByTitle(products, searchByTitle);
+        case "BY_CATEGORY":
+          return filteredProductsByCategory(products, searchByCategory);
+        case "BY_TITLE_AND_CATEGORY":
+          return filteredProductsByCategory(filteredItemsByTitle(products, searchByTitle), searchByCategory);
+        default:
+          return products;
+      }
     }
-    console.log(filtredProducts);
-    console.log(searchByTitle);
     return (    
     //Creamos un provedor que va a encapsular todos mis componentes en APP para darles informacion
     <ShoppingCartContext.Provider value={{
