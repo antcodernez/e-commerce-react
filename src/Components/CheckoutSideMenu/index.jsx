@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const CheckoutSideMenu = () => {
   const [animation, setAnimation] = useState(null);
 
-  const {isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, count, setCount, setOrder, order} = useContext(ShoppingCartContext);
+  const {isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, count, setCount, setOrder, order, setSearchByTitle} = useContext(ShoppingCartContext);
 
 
   const handleIconClick = () => {
@@ -41,7 +41,8 @@ const CheckoutSideMenu = () => {
     setOrder([...order, orderToAdd]);
     setCartProducts([]);
     setCount(0);
-    closeCheckoutSideMenu()
+    closeCheckoutSideMenu();
+    setSearchByTitle(null);
   }
 
   return (

@@ -33,12 +33,12 @@ const ShoppingCartProvider = ({children}) => {
     const [order, setOrder] = useState([]);
     
     // Get products bt title
-    const [searchByTitle, setSearchByTitle] = useState("");
-
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    
     // Get products 
     const [products, setProducts] = useState(null); //useState es un hook que se utiliza para agregar el estado a los componentes de función en React. Permite que un componente de función tenga un estado local, lo que significa que puede almacenar y modificar datos a lo largo del ciclo de vida del componente.
 
-    const [filtredProducts, setFiltredProducts] = useState([]);
+    const [filtredProducts, setFiltredProducts] = useState(null);
 
     useEffect(() => {
         try {
@@ -55,10 +55,9 @@ const ShoppingCartProvider = ({children}) => {
     const filteredItemsByTitle = (items, searchByTitle) => {
       return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
     }
-
    
     //value of category to search products
-    const [searchByCategory, setSearchByCategory] = useState("");
+    const [searchByCategory, setSearchByCategory] = useState(null);
 
 
     /**
@@ -74,18 +73,18 @@ const ShoppingCartProvider = ({children}) => {
     useEffect(() => {
       if(searchByTitle && !searchByCategory)
         {
-          setFiltredProducts(filterBy("BY_TITLE",products, searchByTitle, searchByCategory))
+          setFiltredProducts(filterBy("BY_TITLE", products , searchByTitle, searchByCategory))
         }
       if(!searchByTitle && searchByCategory)
         {
           setFiltredProducts(filterBy("BY_CATEGORY", products, searchByTitle, searchByCategory))
         }
-      else if(!searchByCategory && !searchByCategory)
+      if(!searchByCategory && !searchByCategory)
         {
           setFiltredProducts(filterBy(null, products, searchByTitle, searchByCategory))
         }
       
-      else if(searchByCategory && searchByCategory)
+      if(searchByCategory && searchByCategory)
         {
           setFiltredProducts(filterBy("BY_TITLE_AND_CATEGORY", products, searchByTitle, searchByCategory))
         }
@@ -97,23 +96,21 @@ const ShoppingCartProvider = ({children}) => {
         {
           return filteredItemsByTitle(products, searchByTitle)
         }
-      else if(searchType === "BY_CATEGORY")
+      if(searchType === "BY_CATEGORY")
         {
           return filteredProductsByCategory(products, searchByCategory)
         }
-      else if(searchType === "BY_TITLE_AND_CATEGORY")
+      if(searchType === "BY_TITLE_AND_CATEGORY")
         {
           return filteredProductsByCategory(products, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
         }
-      else if(!searchType)
+      if(!searchType)
         {
           return products
         }
     }
-
     console.log(filtredProducts);
-
-    
+    console.log(searchByTitle);
     return (    
     //Creamos un provedor que va a encapsular todos mis componentes en APP para darles informacion
     <ShoppingCartContext.Provider value={{

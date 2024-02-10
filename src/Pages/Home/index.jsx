@@ -8,12 +8,10 @@ import { ShoppingCartContext } from '../../Context';
 
 function Home() {
   
-  const { searchByTitle, setSearchByTitle, filtredProducts } = useContext(ShoppingCartContext);
+  const { setSearchByTitle, filtredProducts } = useContext(ShoppingCartContext);
 
    const renderView = () => {
-    if(searchByTitle?.length > 0)
-      {
-        if(filtredProducts?.length > 0)
+      if(filtredProducts?.length > 0)
           {
             return(
               filtredProducts?.map((product) => (
@@ -24,27 +22,15 @@ function Home() {
               ))
             )
           }
-        else
-          {
-            return (
+      else
+        {
+          return (
               <div className='absolute mt-60 w-4/5'>
                 <h2 className='text-bold text-center text-purple-950 text-2xl'>We dont have anything 😥</h2>
               </div> 
             )
-          }
-            
-      }
-    else
-      {
-        return(
-          filtredProducts?.map((product) => (
-            <Card 
-              key={product.id}
-                  {...product}
-            />
-          ))
-        )          
-      }
+        }
+   
    }  
  
   return (

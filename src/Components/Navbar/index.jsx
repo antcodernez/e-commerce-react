@@ -56,7 +56,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
-                onClick={() => context.setSearchByCategory("furnitures")}
+                onClick={() => context.setSearchByCategory("Furniture")}
             >
                 Furnitures
             </NavLink>
@@ -78,7 +78,7 @@ const Navbar = () => {
                 className={({isActive}) => {
                     return isActive ? activeStyle : undefined
                 }}
-                onClick={() => context.setSearchByCategory("gallos")}
+                onClick={() => context.setSearchByCategory("Maria")}
             >
                 Gallos
             </NavLink>
@@ -120,7 +120,14 @@ const Navbar = () => {
         </li>
         
         <li className="flex items-center">
-            <box-icon name='shopping-bag' color="#7e22ce"></box-icon>
+            <NavLink
+                to="/my-orders"
+                className={({isActive}) => {
+                    return isActive ? activeStyle : undefined
+                }}
+            >
+                <box-icon name='shopping-bag' color="#7e22ce"></box-icon>
+            </NavLink>
             <p className="font-semibold">
                 {context.count}
             </p>
