@@ -4,6 +4,80 @@ import { ShoppingCartContext } from "../../Context";
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);   
   const activeStyle = "underline underline-offset-4"
+  
+  const menuUser = (sessionState) => {
+    if(sessionState)
+        {
+            return (
+                <ul className="flex items-center gap-3">
+                    <li className="text-purple-900">
+                        { "Bienvenido usuario :D" }
+                    </li>
+                    <li>
+                        <NavLink 
+                            to="/my-orders"
+                            className={({isActive}) => {
+                                return isActive ? activeStyle : undefined
+                            }}
+                        >
+                            My Orders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                            to="/my-account"
+                            className={({isActive}) => {
+                                return isActive ? activeStyle : undefined
+                            }}
+                        >
+                            My account
+                        </NavLink>
+                    </li>
+                    
+                    <li className="flex items-center">
+                        <NavLink
+                            to="/my-orders"
+                            className={({isActive}) => {
+                                return isActive ? activeStyle : undefined
+                            }}
+                        >
+                            <box-icon name='shopping-bag' color="#7e22ce"></box-icon>
+                        </NavLink>
+                        <p className="font-semibold">
+                            {context.count}
+                        </p>
+                    </li>
+                </ul>
+            )
+        }
+    else
+        {
+            return (
+                <ul className="flex items-center gap-3">
+                         <li>
+                            <NavLink 
+                                to="/sing-in"
+                                className={({isActive}) => {
+                                    return isActive ? activeStyle : undefined
+                                }}
+                            >
+                                Sing In
+                            </NavLink>
+                        </li>
+                         <li>
+                            <NavLink 
+                                to="/sing-up"
+                                className={({isActive}) => {
+                                    return isActive ? activeStyle : undefined
+                                }}
+                            >
+                                Sing Up
+                            </NavLink>
+                        </li>
+                </ul>
+            )
+        }
+  }
 
   return (
     <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0">
@@ -84,60 +158,7 @@ const Navbar = () => {
             </NavLink>
         </li>
       </ul>
-      <ul className="flex items-center gap-3">
-        <li className="text-purple-900">
-
-            <NavLink
-                to={ context.sessionState ? "/sing-in" : "/my-account"}
-            >
-            { context.sessionState ? "Bienvenido usuario 🔥🐔💪": "Sing in 🍷✌️🐘" }
-            </NavLink>
-        </li>
-        <li>
-            <NavLink 
-                to="/my-orders"
-                className={({isActive}) => {
-                    return isActive ? activeStyle : undefined
-                }}
-            >
-                My Orders
-            </NavLink>
-        </li>
-        <li>
-            <NavLink 
-                to="/my-account"
-                className={({isActive}) => {
-                    return isActive ? activeStyle : undefined
-                }}
-            >
-                My account
-            </NavLink>
-        </li>
-        <li>
-            <NavLink 
-                to="/sing-in"
-                className={({isActive}) => {
-                    return isActive ? activeStyle : undefined
-                }}
-            >
-                Sing In
-            </NavLink>
-        </li>
-        
-        <li className="flex items-center">
-            <NavLink
-                to="/my-orders"
-                className={({isActive}) => {
-                    return isActive ? activeStyle : undefined
-                }}
-            >
-                <box-icon name='shopping-bag' color="#7e22ce"></box-icon>
-            </NavLink>
-            <p className="font-semibold">
-                {context.count}
-            </p>
-        </li>
-      </ul>
+      {menuUser(context.sessionState)}
     </nav>
   )
 }
