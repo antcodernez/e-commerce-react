@@ -100,6 +100,15 @@ const ShoppingCartProvider = ({children}) => {
           return products;
       }
     }
+
+
+    const [sessionState, setSessionState] = useState(false);
+    
+    const [userApp, setUserApp] = useState({
+      user: "",
+      password: ""
+    });
+    
     return (    
     //Creamos un provedor que va a encapsular todos mis componentes en APP para darles informacion
     <ShoppingCartContext.Provider value={{
@@ -123,7 +132,11 @@ const ShoppingCartProvider = ({children}) => {
         setSearchByTitle,
         filtredProducts,
         setSearchByCategory,
-        searchByCategory
+        searchByCategory,
+        sessionState,
+        setSessionState,
+        userApp,
+        setUserApp
     }}>
         {children}
     </ShoppingCartContext.Provider>
