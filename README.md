@@ -11,7 +11,7 @@ Hace falta crear el flujo de Sign In:
  Página de Sign up para crear un nuevo usuario (si el usuario no está autenticado)
  Página con la información del usuario y botón para hacer logout (si el usuario ya está autenticado)
 
-#13 Navbar Dinámica
+#13 Navbar Dinámica (completed)
 La navbar o menú principal de la aplicación debe cambiar su estructura dependiendo de si el usuario está autenticado o no:
 
  Mostrar el correo del usuario (si ya está autenticado)
