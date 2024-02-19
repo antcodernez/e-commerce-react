@@ -1,12 +1,48 @@
 import { Layout } from '../../Components/Layout'
 import { useParams } from 'react-router-dom'
+import { ShoppingCartContext } from '../../Context';
+import { useContext } from 'react';
 
 function SingIn() {
-  
+
+  const shoppingCartContext = useContext(ShoppingCartContext); 
+  const {userApp, setUserApp, setSessionState} = shoppingCartContext;
   const {url} = useParams();
  
-  const saveUser = () => {
-    alert("Sing in");
+  const saveUser = (e) => {
+    e.preventDefault();
+    if(url === "sing-in")
+      {
+
+        const formData = new FormData(e.target);
+    
+        const formDataObject = {};
+        for (const [key, value] of formData.entries()) {
+          formDataObject[key] = value;
+        }
+
+        setUserApp(formDataObject);
+        setSessionState(true);
+        console.log(userApp);
+      }
+    else
+      {
+        const formData = new FormData(e.target);
+    
+        const email = formData.get("email");
+        const password = formData.get("password");
+        const password2 = formData.get("password2");
+        if(password != password2)
+          {
+            alert("The passwords don't match please try it again :/");
+          }
+        else
+          {
+            console.log(email);
+            console.log(password);
+            console.log(password2);
+          }
+      }
   }
 
   const dataOnSingUp = (params) => {
@@ -16,7 +52,9 @@ function SingIn() {
           <div>
             <h2 className="text-center text-2xl font-bold">Sing in</h2>
 
-            <form action="" className="flex flex-col w-80 text-purple-500 text-xl mt-4 gap-4">
+            <form action="" className="flex flex-col w-80 text-purple-500 text-xl mt-4 gap-4"
+              onSubmit={(e) =>saveUser(e)}
+            >
               <label htmlFor="email">
                 <span>Email</span> <br />
                 <input 
@@ -42,8 +80,6 @@ function SingIn() {
               
               <button 
                 className="border rounded-lg bg-violet-700 w-full h-11 font-semibold text-white"
-                type="submit"
-                onClick={() => saveUser()}
               >Sing in</button>
             </form>
           </div>
@@ -55,7 +91,9 @@ function SingIn() {
           <div>
             <h2 className="text-center text-2xl font-bold">Register</h2>
 
-            <form action="" className="flex flex-col w-80 text-purple-500 text-xl mt-4 gap-4">
+            <form action="" className="flex flex-col w-80 text-purple-500 text-xl mt-4 gap-4"
+               onSubmit={(e) => saveUser(e)}
+            >
               <label htmlFor="email">
                 <span>Email</span> <br />
                 <input 
@@ -93,8 +131,6 @@ function SingIn() {
               
               <button 
                 className="border rounded-lg bg-violet-700 w-full h-11 font-semibold text-white"
-                type="submit"
-                onClick={() => saveUser()}
               >Sing in</button>
             </form>
           </div>

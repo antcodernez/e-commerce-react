@@ -11,7 +11,7 @@ const Navbar = () => {
             return (
                 <ul className="flex items-center gap-3">
                     <li className="text-purple-900">
-                        { "Bienvenido usuario :D" }
+                        { `Welcome ${context.userApp.email}` }
                     </li>
                     <li>
                         <NavLink 

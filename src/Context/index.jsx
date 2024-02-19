@@ -135,8 +135,8 @@ const ShoppingCartProvider = ({children}) => {
         searchByCategory,
         sessionState,
         setSessionState,
-        userApp,
-        setUserApp
+        setUserApp,
+        userApp
     }}>
         {children}
     </ShoppingCartContext.Provider>
