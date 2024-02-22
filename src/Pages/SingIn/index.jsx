@@ -6,41 +6,70 @@ import { useContext } from 'react';
 function SingIn() {
 
   const shoppingCartContext = useContext(ShoppingCartContext); 
-  const {userApp, setUserApp, setSessionState} = shoppingCartContext;
+  const {setUserApp, setSessionState} = shoppingCartContext;
   const {url} = useParams();
  
   const saveUser = (e) => {
     e.preventDefault();
+    let usersData;
+    let parsedUsersData;
+
+
     if(url === "sing-in")
       {
 
         const formData = new FormData(e.target);
-    
+        usersData = localStorage.getItem("user_v1");
+        parsedUsersData = JSON.parse(usersData);
+        
+
         const formDataObject = {};
+        
         for (const [key, value] of formData.entries()) {
           formDataObject[key] = value;
         }
+        
+        for(const user of parsedUsersData)
+          {
+            if(user.email == formDataObject.email)
+              {
 
-        setUserApp(formDataObject);
-        setSessionState(true);
-        console.log(userApp);
+                if(user.password != formDataObject.password)
+                  {
+                    alert("The password is wrong :/");
+                  }
+                setUserApp(formDataObject);
+                setSessionState(true);
+                break;
+              }
+            else
+              {
+                alert("user not found :/")
+              }
+          }
+        
       }
     else
       {
         const formData = new FormData(e.target);
     
-        const email = formData.get("email");
         const password = formData.get("password");
         const password2 = formData.get("password2");
+
         if(password != password2)
           {
             alert("The passwords don't match please try it again :/");
           }
+        
         else
           {
-            console.log(email);
-            console.log(password);
-            console.log(password2);
+            const formDataObject = {};
+            for (const [key, value] of formData.entries()) {
+              formDataObject[key] = value;
+            }
+            
+            setUserApp(formDataObject);
+            setSessionState(true);
           }
       }
   }
