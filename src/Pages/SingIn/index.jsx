@@ -52,7 +52,6 @@ function SingIn() {
     else
       {
         const formData = new FormData(e.target);
-    
         const password = formData.get("password");
         const password2 = formData.get("password2");
 
@@ -63,11 +62,19 @@ function SingIn() {
         
         else
           {
+            formData.delete("password2");
             const formDataObject = {};
             for (const [key, value] of formData.entries()) {
               formDataObject[key] = value;
             }
             
+            usersData = localStorage.getItem("user_v1");
+            parsedUsersData = JSON.parse(usersData);
+
+            parsedUsersData.push(formDataObject);
+
+            localStorage.setItem("user_v1", JSON.stringify(parsedUsersData));
+
             setUserApp(formDataObject);
             setSessionState(true);
           }
