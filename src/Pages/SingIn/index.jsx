@@ -36,7 +36,7 @@ function SingIn() {
 
                 if(user.password != formDataObject.password)
                   {
-                    alert("The password is wrong :/");
+                    return alert("The password is wrong :/");
                   }
                 setUserApp(formDataObject);
                 setSessionState(true);
@@ -44,7 +44,7 @@ function SingIn() {
               }
             else
               {
-                alert("user not found :/")
+                return alert("user not found :/");
               }
           }
         
